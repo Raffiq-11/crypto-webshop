@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import exp from "constants";
-import { Product } from '../../models/product.model';
+import { Product } from '../../models/product/product.component';
+// import { Product } from '../../models/product.model';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { Product } from '../../models/product.model';
   styleUrl: './product.component.css'
 })
 
+@Injectable({ providedIn: 'root' })
 
 
 export class ProductComponent {

@@ -1,13 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {ProductComponent} from "../../service/product/product.component";
-import { Product } from '../../models/product.model';
+import { Product } from '../../models/product/product.component';
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-overview',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    NgForOf
   ],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.css'

@@ -1,17 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterLink} from "@angular/router";
-import { Product } from '../../models/product.model';
+import { Product } from '../../models/product/product.component';
 import {ProductComponent} from "../../service/product/product.component";
+import {NgIf, NgOptimizedImage} from "@angular/common";
+import {AppComponent} from "../../app.component";
 
 @Component({
   selector: 'app-detailview',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    NgIf,
+    NgOptimizedImage
   ],
   templateUrl: './detailview.component.html',
   styleUrl: './detailview.component.css'
 })
+
 export class DetailviewComponent implements OnInit{
 
   product: Product | undefined;

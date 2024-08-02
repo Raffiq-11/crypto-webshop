@@ -4,6 +4,8 @@ import { Product } from '../../models/product/product.component';
 import {ProductComponent} from "../../service/product/product.component";
 import {NgIf, NgOptimizedImage} from "@angular/common";
 import {AppComponent} from "../../app.component";
+import {FavoritesService} from "../../service/FavoritesService";
+import {CartService} from "../../service/CartService";
 
 @Component({
   selector: 'app-detailview',
@@ -23,7 +25,9 @@ export class DetailviewComponent implements OnInit{
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductComponent
+    private productService: ProductComponent,
+    private favoritesService: FavoritesService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +35,16 @@ export class DetailviewComponent implements OnInit{
     this.productService.getProductById(id).subscribe((data: Product) => {
       this.product = data;
     });
+  }
+
+  addToFavorites(product: Product) {
+    this.favoritesService.addFavorite(product);
+
+  }
+
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+
   }
 
 }

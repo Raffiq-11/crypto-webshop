@@ -2,14 +2,16 @@ import {Component, OnInit} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {ProductComponent} from "../../service/product/product.component";
 import { Product } from '../../models/product/product.component';
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgOptimizedImage} from "@angular/common";
+import {FavoritesService} from "../../service/FavoritesService";
 
 @Component({
   selector: 'app-overview',
   standalone: true,
   imports: [
     RouterLink,
-    NgForOf
+    NgForOf,
+    NgOptimizedImage
   ],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.css'
@@ -18,7 +20,7 @@ export class OverviewComponent implements OnInit{
 
   products: Product[] = [];
 
-  constructor(private productService: ProductComponent) {
+  constructor(private productService: ProductComponent, private favoritesService: FavoritesService) {
   }
   ngOnInit() {
     this.productService.getProducts().subscribe((data: Product[]) => {
@@ -26,4 +28,8 @@ export class OverviewComponent implements OnInit{
     });
   }
 
+  addToFavorites(product: Product) {
+    this.favoritesService.addFavorite(product);
+
+  }
 }

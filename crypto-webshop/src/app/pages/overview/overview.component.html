@@ -1,6 +1,12 @@
-<div *ngFor="let product of products" class="product-card">
-  <img [src]="product.imageUrl" alt="{{product.name}}">
-  <h2>{{product.name}}</h2>
-  <p>{{product.description}}</p>
-  <a [routerLink]="['/detail', product.id]">View Details</a>
+<div class="product-overview">
+  <div *ngFor="let product of products" class="product-card">
+    <button (click)="addToFavorites(product)">Favorite</button>
+    <img [src]="product.imageUrl" alt="{{product.name}}" class="product-image" fill="">
+    <div class="product-info">
+      <h2>{{product.name}}</h2>
+      <p>{{product.description}}</p>
+      <a [routerLink]="['/detail', product.id]">View Details</a>
+    </div>
+  </div>
 </div>
+

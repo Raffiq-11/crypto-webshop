@@ -1,7 +1,8 @@
 package com.example.cryptowebshop.controller;
 
+import com.example.cryptowebshop.model.Cart;
 import com.example.cryptowebshop.model.Product;
-import com.example.cryptowebshop.service.ProductService;
+import com.example.cryptowebshop.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -17,32 +18,32 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/api/cart")
 @CrossOrigin(origins = "http://localhost:4200")
-public class ProductController {
+public class CartController {
 
     @Autowired
-    private ProductService productService;
+    private CartService cartService;
 
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public List<Cart> getAllProducts() {
+        return cartService.getAllProductsFromCart();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        Optional<Product> product = productService.getProductById(id);
-        return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<Cart> getProductByIdFromCart(@PathVariable Long id) {
+        Optional<Cart> cart = cartService.getProductByIdFromCart(id);
+        return cart.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Product createProduct(@RequestBody Product product) {
-        return productService.saveProduct(product);
+    public Cart saveProductInCart(@RequestBody Cart cart) {
+        return cartService.saveProductInCart(cart);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        productService.deleteProduct(id);
+    public ResponseEntity<Void> deleteProductFromCart(@PathVariable Long id) {
+        cartService.deleteProductFromCart(id);
         return ResponseEntity.noContent().build();
     }
 }

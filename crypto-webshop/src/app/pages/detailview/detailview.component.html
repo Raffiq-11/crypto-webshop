@@ -1,6 +1,10 @@
 <div *ngIf="product">
-  <img [src]="product?.imageUrl" alt="{{product?.name}}">
-  <h1>{{product?.name}}</h1>
-  <p>{{product?.description}}</p>
+<!--  <img [src]="product.imageUrl" alt="{{product.name}}">-->
+  <img [src]="product.imageUrl" alt="{{product.name}}" class="product-image" fill="">
+  <h1>{{product.name}}</h1>
+  <p>{{product.description}}</p>
+  <button (click)="addToFavorites(product)">Favorite</button>
+  <button (click)="addToCart(product)">In den Warenkorb(Amount auswählen)</button>
+  <br><br>
   <a [routerLink]="['/overview']">Back to overview</a>
 </div>

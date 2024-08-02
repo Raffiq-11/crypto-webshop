@@ -1,2 +1,19 @@
 <h1>Shopping Cart Page</h1>
-<a [routerLink]="['/overview']">Back to overview</a>
+
+
+<div class="product-overview">
+  <div *ngFor="let productFromCart of cart" class="product-card">
+    <img [src]="productFromCart.imageUrl" alt="{{productFromCart.name}}" class="product-image" fill="">
+    <button (click)="deleteFromCart(productFromCart)">Delete from Cart</button>
+    <div class="product-info">
+      <h2>{{productFromCart.name}}</h2>
+      <p>{{productFromCart.description}}</p>
+      <p>Amount: {{productFromCart.amount}}</p>
+      <br>
+      <a [routerLink]="['/detail', productFromCart.id]">View Details</a>
+    </div>
+  </div>
+</div>
+
+
+

@@ -19,7 +19,9 @@ import { Product } from '../../models/product/product.component';
 
 export class ProductComponent {
 
-  private apiUrl = '/products'
+  // private apiUrl = '/api/products'
+  private apiUrl = 'http://localhost:8080/api/products'; // Update this URL according to your backend server
+
 
   constructor(private http: HttpClient) {
   }

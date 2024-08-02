@@ -1,2 +1,19 @@
 <h1>Favorites Page</h1>
-<a [routerLink]="['/overview']">Back to overview</a>
+
+
+<div class="product-overview">
+  <div *ngFor="let favorite of favorites" class="product-card">
+    <img [src]="favorite.imageUrl" alt="{{favorite.name}}" class="product-image" fill="">
+    <button (click)="deleteFromFavorites(favorite)">Delete from Favorites</button>
+    <button (click)="addToCart(favorite)">In den Warenkorb(Amount auswählen)</button>
+    <div class="product-info">
+      <h2>{{favorite.name}}</h2>
+      <p>{{favorite.description}}</p>
+      <br>
+      <a [routerLink]="['/detail', favorite.id]">View Details</a>
+    </div>
+  </div>
+</div>
+
+
+

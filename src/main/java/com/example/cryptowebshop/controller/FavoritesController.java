@@ -1,6 +1,8 @@
 package com.example.cryptowebshop.controller;
 
+import com.example.cryptowebshop.model.Favorite;
 import com.example.cryptowebshop.model.Product;
+import com.example.cryptowebshop.service.FavoritesService;
 import com.example.cryptowebshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,32 +19,33 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/products")
+@RequestMapping("/api/favorites")
 @CrossOrigin(origins = "http://localhost:4200")
-public class ProductController {
+public class FavoritesController {
 
     @Autowired
-    private ProductService productService;
+    private FavoritesService favoritesService;
 
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public List<Favorite> getAllFavorites() {
+        return favoritesService.getAllFavorites();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        Optional<Product> product = productService.getProductById(id);
-        return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+//        Optional<Product> product = productService.getProductById(id);
+//        return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+//    }
 
     @PostMapping
-    public Product createProduct(@RequestBody Product product) {
-        return productService.saveProduct(product);
+    public Favorite createFavorite(@RequestBody Favorite favorite) {
+        System.out.println("in backendcreatefavorite");
+        return favoritesService.saveFavorite(favorite);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        productService.deleteProduct(id);
+    public ResponseEntity<Void> deleteFavorite(@PathVariable Long id) {
+        favoritesService.deleteFavorite(id);
         return ResponseEntity.noContent().build();
     }
 }

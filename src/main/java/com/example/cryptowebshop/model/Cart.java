@@ -14,8 +14,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "product")
-public class Product {
+@Table(name = "cart")
+public class Cart {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -29,5 +29,8 @@ public class Product {
 
     @Column(nullable = false, length = 25)
     private String imageUrl;
+
+    @Column(length = 5)
+    private Float amount;
 
 }

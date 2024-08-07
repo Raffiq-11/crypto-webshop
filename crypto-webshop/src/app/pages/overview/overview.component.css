@@ -1,40 +1,4 @@
-.product-overview {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.product-card {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  overflow: hidden;
-  width: 200px;
-}
-
-.product-image {
-  width: 100%;
-  height: auto;
-}
-
-.product-info {
-  padding: 10px;
-}
-
-.product-info h2 {
-  font-size: 18px;
-  margin: 0 0 10px;
-}
-
-.product-info p {
-  font-size: 14px;
-  color: #555;
-}
-
-.product-info a {
-  text-decoration: none;
-  color: #007bff;
-}
-
-.product-info a:hover {
-  text-decoration: underline;
-}
+/*.crypto-card {*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*}*/

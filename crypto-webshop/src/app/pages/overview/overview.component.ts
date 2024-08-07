@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {ProductComponent} from "../../service/product/product.component";
-import { Product } from '../../models/product/product.component';
+import {Product} from '../../models/product/product.component';
 import {NgForOf, NgOptimizedImage} from "@angular/common";
 import {FavoritesService} from "../../service/FavoritesService";
 
@@ -29,7 +29,7 @@ export class OverviewComponent implements OnInit{
   }
 
   addToFavorites(product: Product) {
-    this.favoritesService.addFavorite(product);
+    this.favoritesService.addFavorite(product).subscribe();
 
   }
 }

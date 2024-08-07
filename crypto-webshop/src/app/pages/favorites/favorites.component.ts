@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import {RouterLink} from "@angular/router";
 import {NgForOf, NgIf} from "@angular/common";
-import {Product} from "../../models/product/product.component";
 import {ProductComponent} from "../../service/product/product.component";
 import {FavoritesService} from "../../service/FavoritesService";
 import {Favorite} from "../../models/favorite";
-import {Cart} from "../../models/cart";
 import {CartService} from "../../service/CartService";
 
 @Component({
@@ -33,12 +31,12 @@ export class FavoritesComponent implements OnInit{
   }
 
   deleteFromFavorites(favorite: Favorite) {
-    this.favoritesService.deleteFromFavorites(favorite.id);
+    this.favoritesService.deleteFromFavorites(favorite.id).subscribe();
 
   }
 
   addToCart(favorite: Favorite) {
-    this.cartService.addToCart(favorite);
+    this.cartService.addToCart(favorite).subscribe();
 
   }
 

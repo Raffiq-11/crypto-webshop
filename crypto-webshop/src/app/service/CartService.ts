@@ -31,7 +31,7 @@ export class CartService {
   addToCart(cart: Cart): Observable<Cart> {
     console.log("in addfoavirte")
     console.log(cart)
-    return this.http.post<Favorite>(this.apiUrl, cart);
+    return this.http.post<Cart>(this.apiUrl, cart);
   }
 
   /** DELETE: delete the hero from the server */

@@ -28,6 +28,7 @@ public class FavoritesController {
 
     @GetMapping
     public List<Favorite> getAllFavorites() {
+        System.out.println("get");
         return favoritesService.getAllFavorites();
     }
 

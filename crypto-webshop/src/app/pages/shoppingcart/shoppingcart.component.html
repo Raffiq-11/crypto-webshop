@@ -1,19 +1,49 @@
-<h1>Shopping Cart Page</h1>
-
-
-<div class="product-overview">
-  <div *ngFor="let productFromCart of cart" class="product-card">
-    <img [src]="productFromCart.imageUrl" alt="{{productFromCart.name}}" class="product-image" fill="">
-    <button (click)="deleteFromCart(productFromCart)">Delete from Cart</button>
-    <div class="product-info">
-      <h2>{{productFromCart.name}}</h2>
+<div class="crypto-card" *ngFor="let productFromCart of cart">
+  <div class="hero bg-base-200 min-h-screen">
+  <div class="card bg-base-100 w-96 shadow-xl">
+    <button (click)="deleteFromCart(productFromCart)" class="btn btn-primary">Delete from cart
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>
+    </button>
+    <a [routerLink]="['/detail', productFromCart.id]">
+    <figure>
+      <img [src]="productFromCart.imageUrl" alt="{{productFromCart.name}}"
+      />
+    </figure>
+    <div class="card-body">
+      <h2 class="card-title">{{productFromCart.name}}</h2>
       <p>{{productFromCart.description}}</p>
       <p>Amount: {{productFromCart.amount}}</p>
-      <br>
-      <a [routerLink]="['/detail', productFromCart.id]">View Details</a>
-    </div>
+      <div class="card-actions justify-end">
+<!--        <button [routerLink]="['/detail', productFromCart.id]" class="btn btn-primary">View Details</button>-->
+      </div>
+    </div></a>
   </div>
+
+    <br><br>
+
+  </div>
+
 </div>
+<div class="hero-content flex-col lg:flex-row">
+  <h1 class="text-5xl font-bold">Total:</h1>
+</div>
+<div class="hero-content flex-col lg:flex-row">
+  <button class="btn btn-active btn-neutral">Checkout</button>
+</div>
+
+
+
 
 
 

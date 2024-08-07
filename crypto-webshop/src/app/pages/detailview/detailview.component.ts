@@ -1,9 +1,8 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterLink} from "@angular/router";
-import { Product } from '../../models/product/product.component';
+import {Product} from '../../models/product/product.component';
 import {ProductComponent} from "../../service/product/product.component";
 import {NgIf, NgOptimizedImage} from "@angular/common";
-import {AppComponent} from "../../app.component";
 import {FavoritesService} from "../../service/FavoritesService";
 import {CartService} from "../../service/CartService";
 
@@ -38,12 +37,12 @@ export class DetailviewComponent implements OnInit{
   }
 
   addToFavorites(product: Product) {
-    this.favoritesService.addFavorite(product);
+    this.favoritesService.addFavorite(product).subscribe();
 
   }
 
   addToCart(product: Product) {
-    this.cartService.addToCart(product);
+    this.cartService.addToCart(product).subscribe();
 
   }
 

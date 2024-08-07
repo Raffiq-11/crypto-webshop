@@ -1,18 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product/product.component';
 import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Favorite} from "../models/favorite";
+import {urlToHttpOptions} from "url";
 
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class FavoritesService {
+
+  // private httpOptions = {
+  //   headers: new HttpHeaders({
+  //     'Content-Type':  'application/json',
+  //     Authorization: 'my-auth-token'
+  //   })
+  // };
 
   private apiUrl = 'http://localhost:8080/api/favorites'; // Update this URL according to your backend server
 
   constructor(private http: HttpClient) {
   }
+
+
 
   addFavorite(favorite: Favorite): Observable<Favorite> {
     console.log("in addfoavirte")

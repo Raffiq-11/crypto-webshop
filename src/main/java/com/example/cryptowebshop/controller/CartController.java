@@ -1,7 +1,6 @@
 package com.example.cryptowebshop.controller;
 
 import com.example.cryptowebshop.model.Cart;
-import com.example.cryptowebshop.model.Product;
 import com.example.cryptowebshop.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,8 +36,13 @@ public class CartController {
     }
 
     @PostMapping
-    public Cart saveProductInCart(@RequestBody Cart cart) {
-        return cartService.saveProductInCart(cart);
+    public ResponseEntity<?> saveProductInCart(@RequestBody Cart cart) {
+        try {
+            Cart addedCartItem = cartService.saveProductInCart(cart);
+            return ResponseEntity.ok(addedCartItem);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(409).body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")

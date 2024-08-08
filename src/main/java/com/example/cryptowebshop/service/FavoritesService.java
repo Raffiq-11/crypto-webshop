@@ -17,11 +17,11 @@ public class FavoritesService {
         return favoritesRepository.findAll();
     }
 
-//    public Optional<Product> getProductById(Long id) {
-//        return productRepository.findById(id);
-//    }
-
     public Favorite saveFavorite(Favorite favorite) {
+        List<Favorite> existingCartItems = favoritesRepository.findByName(favorite.getName());
+        if (!existingCartItems.isEmpty()) {
+            throw new RuntimeException("This product is already in favorites.");
+        }
         return favoritesRepository.save(favorite);
     }
 

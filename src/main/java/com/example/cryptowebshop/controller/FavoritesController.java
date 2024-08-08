@@ -32,16 +32,14 @@ public class FavoritesController {
         return favoritesService.getAllFavorites();
     }
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-//        Optional<Product> product = productService.getProductById(id);
-//        return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-//    }
-
     @PostMapping
-    public Favorite createFavorite(@RequestBody Favorite favorite) {
-        System.out.println("in backendcreatefavorite");
-        return favoritesService.saveFavorite(favorite);
+    public ResponseEntity<?> createFavorite(@RequestBody Favorite favorite) {
+        try {
+            Favorite addedFavorite = favoritesService.saveFavorite(favorite);
+            return ResponseEntity.ok(addedFavorite);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(409).body(e.getMessage());
+        }
     }
 
     @DeleteMapping("/{id}")

@@ -23,6 +23,10 @@ public class CartService {
     }
 
     public Cart saveProductInCart(Cart cart) {
+        List<Cart> existingCartItems = cartRepository.findByName(cart.getName());
+        if (!existingCartItems.isEmpty()) {
+            throw new RuntimeException("This product is already in the cart.");
+        }
         return cartRepository.save(cart);
     }
 

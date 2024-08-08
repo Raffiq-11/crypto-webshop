@@ -1,11 +1,7 @@
-import {Component, Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import exp from "constants";
-import { Product } from '../models/product/product.component';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {catchError, Observable, throwError} from "rxjs";
 import {Cart} from "../models/cart";
-import {Favorite} from "../models/favorite";
-// import { Product } from '../../models/product.model';
 
 
 @Injectable({ providedIn: 'root' })
@@ -29,15 +25,23 @@ export class CartService {
   }
 
   addToCart(cart: Cart): Observable<Cart> {
-    console.log("in addfoavirte")
-    console.log(cart)
-    return this.http.post<Cart>(this.apiUrl, cart);
+    return this.http.post<Cart>(this.apiUrl, cart).pipe(
+      catchError(this.handleError)
+    );
   }
 
   /** DELETE: delete the hero from the server */
   deleteFromCart(id: number): Observable<unknown> {
-    const url = `${this.apiUrl}/${id}`; // DELETE api/heroes/42
+    const url = `${this.apiUrl}/${id}`;
     return this.http.delete(url)
   }
 
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 409) {
+      alert("This product is already in your cart.");
+      return throwError('This product is already in your favorites.');
+    } else {
+      return throwError('An unknown error occurred.');
+    }
+  }
 }

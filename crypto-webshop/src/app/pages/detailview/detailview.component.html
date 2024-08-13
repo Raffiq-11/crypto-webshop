@@ -6,7 +6,8 @@
     <div>
       <h1 class="text-5xl font-bold">{{product.name}}</h1>
       <p class="py-6">
-        {{product.description}}
+        {{product.description}} <br><br>
+        USD {{price}}
       </p>
       <button (click)="addToFavorites(product)" class="btn">Add to favorites
         <svg
@@ -21,10 +22,21 @@
             stroke-width="2"
             d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
         </svg>
-      </button>
+      </button><br><br>
+
+      <input [(ngModel)]="amount"
+             type="number"
+             placeholder="Enter Amount"
+             class="input input-bordered input-primary w-full max-w-xs"
+             min="0.01"
+             step="0.01"
+             required
+      /><br>
       <button class="btn btn-primary" (click)="addToCart(product)">Add to cart(Amount auswählen)
         <svg xmlns="http://www.w3.org/2000/svg" width="1.7em" height="1.7em" viewBox="0 0 24 24"><path fill="currentColor" d="M19 7h-3V6a4 4 0 0 0-8 0v1H5a1 1 0 0 0-1 1v11a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8a1 1 0 0 0-1-1m-9-1a2 2 0 0 1 4 0v1h-4Zm8 13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V9h2v1a1 1 0 0 0 2 0V9h4v1a1 1 0 0 0 2 0V9h2Z"/></svg>
       </button>
+      <p *ngIf="errorMessage" style="color:red">{{ errorMessage }}</p>
+
       <br><br>
       <button [routerLink]="['/overview']" class="btn btn-primary">Back to overview</button>
     </div>

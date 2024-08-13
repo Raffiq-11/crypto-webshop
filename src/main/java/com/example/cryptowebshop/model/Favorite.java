@@ -22,10 +22,15 @@ public class Favorite {
     @Column(nullable = false, length = 50)
     private String name;
 
+    @Column(nullable = false, length = 10)
+    private String shortName;
+
     @Column(nullable = false, length = 250)
     private String description;
 
     @Column(nullable = false, length = 25)
     private String imageUrl;
 
+    @Column(nullable = false, length = 10)
+    private Float price;
 }

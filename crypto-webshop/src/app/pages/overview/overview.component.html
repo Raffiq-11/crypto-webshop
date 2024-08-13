@@ -1,8 +1,9 @@
 <div class="crypto-card" *ngFor="let product of products">
-  <div class="hero bg-base-200 min-h-screen">
+  <div style="margin-bottom: -275px;" class="hero bg-base-200 min-h-screen">
 
   <div class="card bg-base-100 w-96 shadow-xl">
-  <button (click)="addToFavorites(product)" class="btn">
+    <div class="card-body">
+    <button (click)="addToFavorites(product)" class="btn">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="h-6 w-6"
@@ -16,17 +17,19 @@
         d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
     </svg>
   </button>
-  <a [routerLink]="['/detail', product.id]">
+    </div>
+  <a [routerLink]="['/detail', product.name]">
   <figure>
     <img [src]="product.imageUrl" alt="{{product.name}}"
     />
   </figure>
   <div class="card-body">
     <h2 class="card-title">{{product.name}}</h2>
-    <p>{{product.description}}</p>
+    <p> USD {{product.price}}</p>
     <div class="card-actions justify-end">
     </div>
   </div></a>
 </div>
+    <br><br>
 </div>
 </div>

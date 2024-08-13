@@ -3,8 +3,10 @@ import { Component } from '@angular/core';
 export interface Product {
   id: number;
   name: string;
+  shortName: string;
   description: string;
   imageUrl: string;
+  price: number;
 }
 
 @Component({

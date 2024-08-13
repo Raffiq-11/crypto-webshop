@@ -29,9 +29,9 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        Optional<Product> product = productService.getProductById(id);
+    @GetMapping("/{name}")
+    public ResponseEntity<Product> getProductByName(@PathVariable String name) {
+        Optional<Product> product = productService.getProductByName(name);
         return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

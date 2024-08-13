@@ -1,9 +1,7 @@
 import {Component, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import exp from "constants";
-import { Product } from '../../models/product/product.component';
-// import { Product } from '../../models/product.model';
+import {Product} from '../../models/product/product.component';
 
 
 @Component({
@@ -19,9 +17,7 @@ import { Product } from '../../models/product/product.component';
 
 export class ProductComponent {
 
-  // private apiUrl = '/api/products'
-  private apiUrl = 'http://localhost:8080/api/products'; // Update this URL according to your backend server
-
+  private apiUrl = 'http://localhost:8080/api/products';
 
   constructor(private http: HttpClient) {
   }
@@ -30,8 +26,8 @@ export class ProductComponent {
     return this.http.get<Product[]>(this.apiUrl);
   }
 
-  getProductById(id: number): Observable<Product> {
-    return this.http.get<Product>(`${this.apiUrl}/${id}`);
+  getProductByName(name: string): Observable<Product> {
+    return this.http.get<Product>(`${this.apiUrl}/${name}`);
   }
 
 }

@@ -4,6 +4,8 @@ import {ProductComponent} from "../../service/product/product.component";
 import {Product} from '../../models/product/product.component';
 import {NgForOf, NgOptimizedImage} from "@angular/common";
 import {FavoritesService} from "../../service/FavoritesService";
+import {CryptoCurrency} from "../../models/cryptocurrency";
+import {CryptocurrencyService} from "../../service/CryptocurrencyService";
 
 @Component({
   selector: 'app-overview',
@@ -20,11 +22,20 @@ export class OverviewComponent implements OnInit{
 
   products: Product[] = [];
 
-  constructor(private productService: ProductComponent, private favoritesService: FavoritesService) {
+  price: number | null = null;
+
+  constructor(private productService: ProductComponent, private favoritesService: FavoritesService
+  , private cryptoService: CryptocurrencyService) {
   }
   ngOnInit() {
     this.productService.getProducts().subscribe((data: Product[]) => {
       this.products = data;
+
+      this.products.forEach((product: Product) => {
+          this.cryptoService.getCryptoByShortname(product.shortName).subscribe((cryptoData: CryptoCurrency) => {
+            product.price = cryptoData.data.amount; // Assign the fetched price to the product
+          });
+      });
     });
   }
 
